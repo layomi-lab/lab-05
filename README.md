@@ -2,8 +2,8 @@
 
 ## Student Details
 
-- **Full Name:** `<Enter name>`
-- **CCID:** `<Enter ccid>`
+- **Full Name:** `Badejo Oluwalayomi`
+- **CCID:** `layomi>`
 
 ## References and Resources
 
