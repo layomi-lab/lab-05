@@ -32,6 +32,7 @@ fun CityListScreen(
     cities: List<City>,
     onAddCity: (City) -> Unit,
     onUpdateCity: (City, City) -> Unit,
+    onDeleteCity: (City) -> Unit,
     modifier: Modifier = Modifier
 ) {
     var newCityName by remember { mutableStateOf("") }
@@ -155,7 +156,7 @@ fun CityListScreen(
                 }
             }
         }
-        LazyColumn(modifier = Modifier.fillMaxSize()) {
+        LazyColumn(modifier = Modifier.weight(1f)) {
             itemsIndexed(cities) { index, city ->
                 CityRow(
                     city = city,
@@ -173,6 +174,19 @@ fun CityListScreen(
                 }
             }
         }
+
+        Button(
+            modifier = Modifier.fillMaxWidth().padding(16.dp),
+            enabled = selectedCity != null,
+            onClick = {
+                selectedCity?.let { city ->
+                    onDeleteCity(city)
+                    selectedCity = null
+                    editedCityName = ""
+                    editedProvinceName = ""
+                }
+            }
+        ) { Text("DELETE") }
     }
 }
 
@@ -213,7 +227,8 @@ fun CityListScreenPreview() {
                 City("Calgary", "AB")
             ),
             onAddCity = {},
-            onUpdateCity = { _, _ -> }
+            onUpdateCity = { _, _ -> },
+            onDeleteCity = {}
         )
     }
 }
